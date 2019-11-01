@@ -1,0 +1,21 @@
+﻿@model IEnumerable<OnlineQuiz.Models.Question>
+
+
+
+@{
+    foreach (var item in Model)
+    {
+        var possibleAnswers = @item.possibleAnswers.Split(',');
+
+        <div style="display: block">
+            <h4>@item.question</h4>
+            <ul>
+                @foreach (var answer in possibleAnswers)
+                {
+                    <li class="btn btn-primary" style="display: block; margin-bottom:5px">@answer</li>
+                }
+            </ul>
+        </div>
+    }
+}
+<input type="button" value="Submit" onclick="location.href = '@Url.Action("ProcessAnswer", "AOK")'" />

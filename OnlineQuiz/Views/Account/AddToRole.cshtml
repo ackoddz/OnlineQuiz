@@ -1,0 +1,25 @@
+﻿@model OnlineQuiz.Models.AddToRoleModel
+@{
+    ViewBag.Title = "AddToRole";
+}
+
+<h2>AddToRole</h2>
+
+@using (Html.BeginForm("AddToRole", "Account"))
+{
+<div>
+    <div style="height:50px;width:300px">
+        E-Mail:
+        <span style="float:right">@Html.TextBoxFor(x => x.Email)</span>
+    </div>
+
+    <div style="height:50px;width:300px">
+        Role:
+        <span style="float:right">@Html.DropDownListFor(x => x.SelectRole, new SelectList(Model.Roles))</span>
+</div>
+
+
+    <div><button type="submit" class="btn btn-secondary">Add</button></div>
+</div>
+}
+

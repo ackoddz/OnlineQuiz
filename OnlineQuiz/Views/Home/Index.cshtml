@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron" style="padding-left:70px;">
+    <div class="btn btn-primary" style="width:45%;margin:10px;height:45%">
+        <h4>Основи на Веб Дизајн</h4>                     <!--ONVD-->
+        <p>
+            asdasdsadasdsad
+            asdsadasdasdasd
+            adsasd
+        </p>
+        <input type="button" value="Test" onclick="location.href='@Url.Action("Index", "ONVD")'" />
+        @if (Roles.IsUserInRole("Administrator"))
+        {
+            <input type="button" value="Edit" onclick="location.href='@Url.Action("List", "ONVD")'" />
+        }
+    </div>
+    <div class="btn btn-primary" style="width:45%;margin:10px;height:45%">
+        <h4>Архитектура и организација на компјутери</h4>                             <!--AOK-->
+        <p>
+            asdasdsadasdsad
+            asdsadasdasdasd
+            adsasd
+        </p>
+        <input type="button" value="Test" onclick="location.href='@Url.Action("Index", "AOK")'" />
+        @if (Roles.IsUserInRole("Administrator"))
+        {
+            <input type="button" value="Edit" onclick="location.href='@Url.Action("List", "AOK")'" />
+        }
+    </div>
+    <div class="btn btn-primary" style="width:45%;margin:10px;height:45%">
+        <h4>Компјутерски Компоненти</h4>               <!--KK-->
+        <p>
+            asdasdsadasdsad
+            asdsadasdasdasd
+            adsasd
+        </p>
+        <input type="button" value="Test" onclick="location.href='@Url.Action("Index", "KK")'" />
+        @if (Roles.IsUserInRole("Administrator"))
+        {
+            <input type="button" value="Edit" onclick="location.href='@Url.Action("List", "KK")'" />
+        }
+    </div>
+    <div class="btn btn-primary" style="width:45%;margin:10px;height:45%">
+        <h4>Вовед во Информатика</h4>                   <!--VVINF-->
+        <p>
+            asdasdsadasdsad
+            asdsadasdasdasd
+            adsasd
+        </p>
+        <input type="button" value="Test" onclick="location.href='@Url.Action("Index", "VVINF")'" />
+        @if (Roles.IsUserInRole("Administrator"))
+        {
+        <input type="button" value="Edit" onclick="location.href='@Url.Action("List", "VVINF")'" />
+        }
+    </div>
+
+</div>
