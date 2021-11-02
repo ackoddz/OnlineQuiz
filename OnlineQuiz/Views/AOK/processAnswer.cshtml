@@ -1,0 +1,25 @@
+﻿
+@{
+    <h2>Освоивте @ViewBag.Score / 100 поени</h2>
+    <h4>
+        Ќе бидете пренасочени на почетната страница за <span id="countdown">5</span> секунди
+    </h4>
+    <script type="text/javascript">
+        var seconds = 5;
+
+        function countdown() {
+            seconds = seconds - 1;
+            if (seconds < 0) {
+                window.location = "/";
+            } else {
+                document.getElementById("countdown").innerHTML = seconds;
+                window.setTimeout("countdown()", 1000);
+            }
+        }
+
+        countdown();
+
+    </script>
+
+}
+

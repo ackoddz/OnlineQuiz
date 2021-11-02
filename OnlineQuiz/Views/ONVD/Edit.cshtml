@@ -1,0 +1,87 @@
+﻿@model OnlineQuiz.Models.Question
+
+@{
+    ViewBag.Title = "Edit";
+}
+<style>
+    .inp {
+        padding: 5px;
+        width: 100%;
+        height: 100%;
+        margin: auto;
+        border-radius: 5px;
+    }
+    .inp:focus {
+        background-color: darkseagreen;
+    }
+    .dv {
+        margin: auto;
+        width: 300px;
+        height: 40px;
+    }
+    label {
+        color: white;
+        font-size: 20px;
+    }
+    .inp-btn{
+        background-color: darkseagreen;
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer;
+        color: black;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 1.4;
+        padding: 10px;
+        width: 140px
+    }
+    .inp-btn:hover{
+        background-color: #6d8c6d;
+        transition: background-color 0.3s ease;
+    }
+</style>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal" style="margin:auto; width:400px;text-align:center;">
+        <hr />
+        <h4 style="text-align:center; text-decoration:underline">Дали сте сигурни дека сакате да го изменете ова прашање?</h4>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        <div>
+            <div class="form-group">
+                <label>Прашање</label><br />
+                <div class="dv">
+                    @Html.EditorFor(model => model.question, new { htmlAttributes = new { @class = "inp" } })
+                    @Html.ValidationMessageFor(model => model.question, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Понудени одговори</label><br />
+                <div class="dv">
+                    @Html.EditorFor(model => model.possibleAnswers, new { htmlAttributes = new { @class = "inp" } })
+                    @Html.ValidationMessageFor(model => model.possibleAnswers, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Точен одговор</label><br />
+                <div class="dv">
+                    @Html.EditorFor(model => model.correctAnswer, new { htmlAttributes = new { @class = "inp" } })
+                    @Html.ValidationMessageFor(model => model.correctAnswer, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10" style="margin:auto">
+                <input type="submit" value="Зачувај" class="inp-btn" /><br />
+            </div>
+        </div>
+        <div>
+            @Html.ActionLink("Врати се назад", "List")
+        </div>
+    </div>
+}
+

@@ -3,60 +3,101 @@
 @{
     ViewBag.Title = "Log in";
 }
+    <style>
+        .inp-cont {
+            margin-left:25%;
+            margin-top: 1%;
+            background-color: darkseagreen;
+            border: 0;
+            border-radius: 5px;
+            cursor: pointer;
+            color: black;
+            font-size: 12px;
+            font-weight: bold;
+            line-height: 1.4;
+            padding: 5px;
+            width: 100%;
+            height: 100%;
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
-    <div class="col-md-8">
+        }
+        .inp-btn{
+            margin-top: 1%;
+            background-color: darkseagreen;
+            border: 0;
+            border-radius: 5px;
+            cursor: pointer;
+            color: black;
+            font-size: 12px;
+            font-weight: bold;
+            line-height: 1.4;
+            padding: 10px;
+            width: 140px
+        }
+        .inp {
+            padding: 5px;
+            width: 100%;
+            height: 100%;
+            margin: auto;
+            border-radius: 5px;
+        }
+        .inp-btn:hover, .inp:focus{
+            background-color: #6d8c6d;
+            transition: background-color 0.3s ease;
+        }
+        .dv {
+            margin: auto;
+            width: 300px;
+            height: 40px;
+        }
+
+        label {
+            color: white;
+            font-size: 20px;
+        }
+    </style>
+<h4 style="margin:auto;width:16%; text-decoration:underline;">Најавете се</h4>
+<div class="row" style="margin:auto; margin-top:2%; width:50%;">
+    <div class="col-md-8" style="margin:auto">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
-                <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    <label style="text-align:center;width:100%;margin:auto">Е-маил</label><br />
+                    <div class="col-md-10" style="width:inherit; margin:auto">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "inp" })
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    <label style="text-align:center;width:100%;margin:auto">Лозинка</label><br />
+                    <div class="col-md-10" style="width:inherit; margin:auto">
+                        @Html.PasswordFor(m => m.Password, new { @class = "inp" })
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
+                    <div class="col-md-offset-2 col-md-10"style="width:48%;margin:auto">
                         <div class="checkbox">
                             @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
+                            <label style="margin:auto">Запамти ме</label><br />
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-primary" />
-
+                <div class="form-group" style="width:59%; margin:auto">
+                    <div class="col-md-offset-2 col-md-10" style="margin:auto">
+                        <input type="submit" value="Најава" class="inp-btn" />
                     </div>
                 </div>
-                <p>
-                    @Html.ActionLink("Register as a new user", "Register")
-                </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
             }
         </section>
     </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>
+    <!--<div class="col-md-4">
+         <section id="socialLoginForm">
+             @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+         </section>
+     </div>-->
 </div>
 
 @section Scripts {

@@ -5,14 +5,14 @@ namespace OnlineQuiz.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<OnlineQuiz.Models.Q_Context>
+    internal sealed class Configuration : DbMigrationsConfiguration<OnlineQuiz.Models.ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(OnlineQuiz.Models.Q_Context context)
+        protected override void Seed(OnlineQuiz.Models.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

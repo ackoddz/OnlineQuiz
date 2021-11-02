@@ -3,49 +3,81 @@
 @{
     ViewBag.Title = "List";
 }
+<style>
+    .inp-btn {
+        background-color: darkseagreen;
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer;
+        color: black;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 1.4;
+        padding: 10px;
+        width: 140px
+    }
 
-<h2>List</h2>
-
+    .inp-btn:hover {
+        background-color: #6d8c6d;
+        transition: background-color 0.3s ease;
+    }
+</style>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Додади прашање", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.subject)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.question)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.possibleAnswers)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.correctAnswer)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.subject)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.question)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.possibleAnswers)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.correctAnswer)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+<table class="table" id="dt">
+    <thead>
+        <tr style="background-color:darkseagreen; color: black">
+            <th>
+                <label>Предмет</label><br />
+            </th>
+            <th>
+                <label>Прашање</label><br />
+            </th>
+            <th>
+                <label>Можни одговори</label><br />
+            </th>
+            <th>
+                <label>Точен одговор</label><br />
+            </th>
+            <th>
+                <label>Опции</label>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.subject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.question)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.possibleAnswers)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.correctAnswer)
+                </td>
+                <td>
+                    @Html.ActionLink("Измени", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Избриши", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<input type="button" value="Врати се назад" onclick="location.href='/'" class="inp-btn" />
+@section Scripts{
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/bootbox.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#dt").DataTable();
+        });
+    </script>
 }
 
-</table>

@@ -1,0 +1,93 @@
+﻿@model IEnumerable<OnlineQuiz.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "LeaderBoard";
+}
+<style>
+    input[type=button] {
+        background-color: darkseagreen;
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer;
+        color: black;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 1.4;
+        padding: 10px;
+        width: 140px
+    }
+    input[type=button]:hover{
+        background-color: #6d8c6d;
+        transition: background-color 0.3s ease;
+    }
+</style>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+@section scripts{
+    <script type="text/javascript">
+        $(".first").parent().parent().css({
+            "background-color":"gold",
+            "color":"black"
+        });
+        $(".second").parent().parent().css({
+            "background-color": "silver",
+            "color": "black"
+        });
+        $(".third").parent().parent().css({
+            "background-color": "#e89e4a",
+            "color": "black"
+        });
+    </script>
+}
+
+
+<h3>Ранг листа</h3>
+
+<table class="table" style="width:40%; margin-top:3%">
+    <tr style="color:darkseagreen;">
+        <th>
+            Име
+        </th>
+        <th>
+            Презиме
+        </th>
+        <th>
+            Вкупно поени
+        </th>
+        <th></th>
+    </tr>
+    @{
+        var i = 1;
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @if (i == 1)
+                    {
+                        <p class="first">@i. @item.Name</p>
+                    }
+                    else if (i == 2)
+                    {
+                        <p class="second">@i. @item.Name</p>
+                    }
+                    else if (i == 3)
+                    {
+                        <p class="third"> @i.@item.Name </p>
+                    }
+                    else
+                    {
+                        <p> @i.@item.Name </p>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Points)
+                </td>
+            </tr>
+            i++;
+        }
+
+    }
+</table>
+<input type="button" value="Врати се назад" onclick="location.href='/'"/>

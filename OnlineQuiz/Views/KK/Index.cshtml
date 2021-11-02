@@ -1,21 +1,79 @@
-﻿@model IEnumerable<OnlineQuiz.Models.Question>
+﻿@model OnlineQuiz.Models.myModel
+<style>
+    input[type=submit] {
+        background-color: darkseagreen;
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer;
+        color: black;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 1.4;
+        padding: 10px;
+        width: 140px
+    }
 
+    input[type=submit]:hover {
+        background-color: #6d8c6d;
+        transition: background-color 0.3s ease;
+    }
+    ul > li {
+        width: 50%;
+        margin: auto;
+    }
 
+    .btn {
+        background-color: #b1caf2;
+        color: black;
+        font-size: 15px;
+    }
 
-@{
-    foreach (var item in Model)
+    ul > li:hover {
+        color: white;
+        background-color: darkseagreen;
+    }
+</style>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+@section scripts{
+
+    <script type="text/javascript">
+        $(".btn").click(function () {
+            if ($(this).children(":first").prop('checked') == true) {
+                $(this).children(":first").prop('checked', false);
+                $(this).css("background-color", "#b1caf2");
+            }
+            else {
+                $(this).children(":first").prop('checked', true);
+                $(this).css("background-color", "darkseagreen");
+            }
+        });
+        $(".btn").hover(function () {
+            $(this).children(":nth-child(2)").css("color", "black");
+        });
+    </script>
+
+}
+
+@using (Html.BeginForm("processAnswer", "KK", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    var i = 1;
+    foreach (var item in Model.randomSample)
     {
         var possibleAnswers = @item.possibleAnswers.Split(',');
-
-        <div style="display: block">
-            <h4>@item.question</h4>
+        <div class="question" style="display: block" id=@item.Id>
+            <h5 style="text-align:center">@i. @item.question</h5>
             <ul>
                 @foreach (var answer in possibleAnswers)
                 {
-                    <li class="btn btn-primary" style="display: block; margin-bottom:5px">@answer</li>
+                    <li class="btn" style="display: block; margin-bottom:5px">
+                        <input type="checkbox" id="@item.Id _@answer" name="QuestionAnswer" value="@item.Id _@answer" /> <span>@answer</span>
+                    </li>
                 }
             </ul>
         </div>
+        i++;
     }
+        <input type="submit" id="submit" value="Готово" />
 }
-<input type="button" value="Submit" onclick="location.href = '@Url.Action("ProcessAnswer", "KK")'" />

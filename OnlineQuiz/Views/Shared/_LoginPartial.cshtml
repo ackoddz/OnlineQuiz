@@ -1,4 +1,31 @@
 ﻿@using Microsoft.AspNet.Identity
+<style>
+    button[type=button] {
+        background-color: darkseagreen;
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer;
+        color: black;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 1.4;
+        padding: 10px;
+        width: 140px
+    }
+    .a{
+        text-decoration:none;
+        color:black;
+    }
+    .a:visited { text-decoration: none; color:black; }
+    .a:hover { text-decoration: none; color:black; }
+    .a:focus { text-decoration: none; color:black; }
+    .a:hover, a:active { text-decoration: none; color:black }
+
+    bttt.hover{
+        background-color: #6d8c6d;
+        transition: background-color 0.3s ease;
+    }
+</style>
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -6,17 +33,18 @@
     @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right">
-        <li><button type="button" class="btn btn-secondary">
-        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </button></li>
-        <li><button type="button" class="btn btn-secondary"><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></button></li>
+            <!--<li><button type="button" class="btn btn-secondary" style="background-color:darkseagreen; color:black;">
+                <label>Здраво @ViewData["currentUserName"] @ViewData["currentUserSurname"]</label>
+        </button></li> -->
+        <li><button type="button" class="btn btn-secondary" id="bttt"><a href="javascript:document.getElementById('logoutForm').submit()" class="a">Одјава</a></button></li>
     </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li><button type="button" class="btn btn-secondary">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</button></li>
-        <li><button type="button" class="btn btn-secondary">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li><button type="button" class="btn btn-secondary">@Html.ActionLink("Регистрирај се", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "a"})</button></li>
+        <li><button type="button" class="btn btn-secondary">@Html.ActionLink("Логирај се", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "a"})</li>
     </ul>
 }
+

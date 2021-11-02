@@ -1,0 +1,72 @@
+﻿@model IEnumerable<OnlineQuiz.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Users_Review";
+}
+<style>
+    input[type=button] {
+        background-color: darkseagreen;
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer;
+        color: black;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 1.4;
+        padding: 10px;
+        width: 140px
+    }
+    input[type=button]:hover{
+        background-color: #6d8c6d;
+        transition: background-color 0.3s ease;
+    }
+</style>
+<h3 style="margin-bottom:3%">Корисници</h3>
+
+<table  class="table" id="dt">
+    <thead>
+        <tr style="background-color:darkseagreen; color: black">
+            <th>
+                Име
+            </th>
+            <th>
+                Презиме
+            </th>
+            <th>
+                Поени
+            </th>
+            <th>
+                Е-маил
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Points)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+            </tr>
+        }
+    </tbody>
+</table>
+<input type="button" value="Врати се назад" onclick="location.href='/'" />
+@section Scripts{
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/bootbox.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#dt").DataTable();
+        });
+    </script>
+}

@@ -65,6 +65,12 @@ namespace OnlineQuiz.Models
     public class RegisterViewModel
     {
         [Required]
+        public string Name { get; set; }
+
+        [Required]
+        public string Surname { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
